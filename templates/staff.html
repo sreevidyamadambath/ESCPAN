@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table border="2">
+    
+        <tr>
+                <th>Date of Birth</th>
+                <th>Full name</th>
+                <th>state</th>
+                <th>District</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Phone</th>
+                <th>Email</th>
+            
+        </tr>
+        {% for i in data['staff'] %}
+        <tr>
+            <td>{{i['dob']}}</td>
+            <td>{{i['full_name']}}</td>
+            <td>{{i['state']}}</td>
+            
+            <td>{{i['district']}}</td>
+            <td>{{i['address']}}</td>
+            <td>{{i['pincode']}}</td>
+            <td>{{i['phone']}}</td>
+
+            <td>{{i['email']}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>REPLY</h1>
+
+<form action="" method="post">
+    <table>
+        <tr>
+            <th>Complaint</th>
+            {%if data['viewcomplaint']%}
+            <td><input type="text" value="{{data['viewcomplaint'][0]['complaints']}}" readonly></td>
+            {%endif%}
+        </tr>
+        <tr>
+            <th>Reply</th>
+            <td><input type="text" name="reply"></td>
+        </tr><br><br>
+
+        <tr>
+            <td  align="center" colspan="2"><input type="submit" value="SEND REPLY" name="send" id=""></td></tr>
+    </table>
+</form>
+</body>
+</html>

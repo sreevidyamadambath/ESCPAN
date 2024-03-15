@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Reply</h1>
+    <form action="">
+        <table>
+            <tr>
+                
+                <th>Complaint</th>
+                <th>Reply</th>
+            </tr>
+            {% for i in data['viewreply'] %}
+            <tr>
+            <td><input type="text" value="{{data['viewreply'][0]['complaints']}}" readonly></td>
+            <td><input type="text" value="{{data['viewreply'][0]['reply']}}" readonly></td>
+            
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>

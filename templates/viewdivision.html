@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Divisions</h1>
+    {%if data['up']%}
+    <h1>UPDATE SCHEDULE</h1>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <th>Start date</th>
+                <td><input type="text" name="division" value="{{data['viewdivision'][0]['division_name']}}"></td>
+            </tr>
+            <tr>
+                <input type="submit" name="update" value="update">
+            </tr>
+            
+        </table>
+
+    </form>
+
+
+    {%else%}
+    <form method="post">
+        <table border="2">
+            <tr>
+                <th>Branch</th>
+                <th>Division name</th>
+                <th>username</th>
+                <th>password name</th>
+            </tr>
+            <tr>
+                <td><select name="br" id="">
+                    <option value="">select</option>
+                    {% for i in data['brview']%}
+                    <option value="{{i['branch_id']}}">{{i['branch_name']}}</option>
+                    {% endfor %}
+                </select></td>
+                <td><input type="text" name="division" id=""></td>
+                <td><input type="text" name="username" id=""></td>
+                <td><input type="text" name="password" id=""></td>
+                
+            </tr>
+            <tr colspan="2">
+                <td colspan="2"><input type="submit" name="submit"  value="add"></td>
+            </tr>
+            
+        </table>
+    </form>    
+    
+   
+
+    <table border="2">
+    
+        <tr>
+            <th>Division</th>
+            <th>Branch</th>
+            
+        </tr>
+        {% for i in data['viewdivision'] %}
+        <tr>
+            <td>{{i['division_name']}}</td>
+            <td>{{i['branch_name']}}</td>
+            
+            <td><a href="?action=update&id={{i['d_id']}}">Update</a></td>
+            <td><a href="?action=delete&id={{i['d_id']}}">delete</a></td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+
+{% endif %}
+</body>
+</html>

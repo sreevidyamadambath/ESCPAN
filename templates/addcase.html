@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form  method="post">
+        <table border="2">
+            <tr>
+                <th>Case Number</th>
+                <th>crime</th>
+                <th>date</th>
+                <th>status</th>
+                <th>staff</th>
+                
+            </tr>
+            <tr>
+                <td><input type="text" name="caseno" id=""></td>
+                <td><input type="text" name="crime" id=""></td>
+                <td><input type="text" name="date" id=""></td>
+                <td><input type="text" name="status" id=""></td>
+                <td>
+                    <select name="div" id="">
+                        <option value="">select</option>
+                        {% for i in data['divview']%}
+                        <option value="{{i['d_id']}}">{{i['division_name']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                
+            </tr>
+            
+                <tr>
+                    <td><input type="submit" name="submit"  value="add"></td>
+                </tr>
+            
+        </table>
+        
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Staff</h1>
+    {%if data['up']%}
+    <h1>UPDATE SCHEDULE</h1>
+    <form action="" method="post">
+        <table>
+            <tr>
+                <th>date of birth</th>
+                <th>Full name</th>
+                <th>state</th>
+                <th>district</th>
+                <th>Address</th>
+                <th>branch</th>
+                <th>division</th>
+                <th>pincode</th>
+                <th>phone</th>
+                <th>email</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="dob" value="{{data['staffview'][0]['dob']}}"></td>
+                <td><input type="text" name="name" value="{{data['staffview'][0]['full_name']}}"></td>
+                <td><input type="text" name="state" value="{{data['staffview'][0]['state']}}"></td>
+                <td><input type="text" name="district" value="{{data['staffview'][0]['district']}}"></td>
+                <td><input type="text" name="address" value="{{data['staffview'][0]['address']}}"></td>
+                <!-- <td><input type="text" name="branch" value="{{data['staffview'][0]['branch']}}"></td>
+                <td><input type="text" name="division" value="{{data['staffview'][0]['division']}}"></td> -->
+                <td>
+                    <select name="br" id="">
+                        <option value="">select</option>
+                        {% for i in data['brview']%}
+                        <option value="{{i['branch_id']}}">{{i['branch_name']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <select name="div" id="">
+                        <option value="">select</option>
+                        {% for i in data['divview']%}
+                        <option value="{{i['d_id']}}">{{i['division_name']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><input type="text" name="pincode" value="{{data['staffview'][0]['pincode']}}"></td>
+                <td><input type="text" name="phone" value="{{data['staffview'][0]['phone']}}"></td>
+                <td><input type="text" name="email" value="{{data['staffview'][0]['email']}}"></td>
+                
+            </tr>
+            <tr>
+                <input type="submit" name="update" value="update">
+            </tr>
+            
+        </table>
+
+    </form>
+
+
+    {%else%}
+    <form  method="post">
+        <table border="2">
+            <tr>
+                <th>Date of Birth</th>
+                <th>Full name</th>
+                <th>state</th>
+                <th>District</th>
+                <th>Address</th>
+                <th>Branch</th>
+                <th>Division</th>
+                <th>Pincode</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Password</th>
+                
+            </tr>
+            <tr>
+                <td><input type="text" name="dob" id=""></td>
+                <td><input type="text" name="name" id=""></td>
+                <td><input type="text" name="state" id=""></td>
+                <td><input type="text" name="district" id=""></td>
+                <td><input type="text" name="address" id=""></td>
+                <td>
+                    <select name="br" id="">
+                        <option value="">select</option>
+                        {% for i in data['brview']%}
+                        <option value="{{i['branch_id']}}">{{i['branch_name']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td>
+                    <select name="div" id="">
+                        <option value="">select</option>
+                        {% for i in data['divview']%}
+                        <option value="{{i['d_id']}}">{{i['division_name']}}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                
+                <td><input type="text" name="pincode" id=""></td>
+                <td><input type="text" name="phone" id=""></td>
+                <td><input type="text" name="email" id=""></td>
+                <td><input type="text" name="username" id=""></td>
+                <td><input type="text" name="password" id=""></td>
+                
+            </tr>
+            
+                <tr>
+                    <td><input type="submit" name="submit"  value="add"></td>
+                </tr>
+            
+        </table>
+        
+    
+    <br>
+
+    <table border="2">
+    
+        <tr>
+                <th>Date of Birth</th>
+                <th>Full name</th>
+                <th>state</th>
+                <th>District</th>
+                <th>Address</th>
+                <th>Pincode</th>
+                <th>Phone</th>
+                <th>Email</th>
+            
+        </tr>
+        {% for i in data['staff'] %}
+        <tr>
+            <td>{{i['dob']}}</td>
+            <td>{{i['full_name']}}</td>
+            <td>{{i['state']}}</td>
+            
+            <td>{{i['district']}}</td>
+            <td>{{i['address']}}</td>
+            <td>{{i['pincode']}}</td>
+            <td>{{i['phone']}}</td>
+            <td>{{i['email']}}</td>
+            <td><a href="?action=update&id={{i['s_id']}}">Update</a></td>
+            <td><a href="?action=delete&id={{i['s_id']}}">delete</a></td>
+        </tr>
+
+        {% endfor %}
+        
+    </table>
+    {% endif %}
+</form>
+    
+</body>
+</html>

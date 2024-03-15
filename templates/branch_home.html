@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {%if data['viewbranch']%}
+
+    <h1>Login</h1>
+   
+    <form action="" method="post">
+        <table border="2">
+            <tr>
+                <th>Branch name</th>
+                <th>state</th>
+                <th>district</th>
+                <th>address</th>
+                <th>pincode</th>
+                <th>phone</th>
+                <th>email</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="branch" id="" value="{{data['viewbranch'][0]['branch_name']}}"></td>
+                <td><input type="text" name="state" id="" value="{{data['viewbranch'][0]['state']}}"></td>
+                <td><input type="text" name="district" id="" value="{{data['viewbranch'][0]['district']}}"></td>
+                <td><input type="text" name="address" id="" value="{{data['viewbranch'][0]['address']}}"></td>
+                <td><input type="text" name="pincode" id="" value="{{data['viewbranch'][0]['pincode']}}"></td>
+                <td><input type="text" name="phone" id="" value="{{data['viewbranch'][0]['phone']}}"></td>
+                <td><input type="text" name="email" id="" value="{{data['viewbranch'][0]['email']}}"></td>
+            </tr>
+            <tr>
+                <td><input type="submit" name="upd"  value="Update"></td>
+            </tr>
+            
+                
+            
+        </table>
+        
+    </form>
+    {% endif %}
+</body>
+</html>
