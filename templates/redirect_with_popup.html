@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+</head>
+<body>
+    <script>
+        Swal.fire({
+            title: "{{title}}",
+            icon: "success",
+            timer: 1500,
+            showConfirmButton: false, 
+            allowOutsideClick: false, 
+            customClass: {
+                title: 'custom-swal-title',
+            },
+            onClose: function() {
+                window.location.href = "{{ redirect_url }}";
+            }
+        });
+    </script>
+    
+    <style>
+        .custom-swal-title {
+            color: black;
+            font-size: 25px;
+        }
+
+       
+    </style>
+    
+</body>
+</html>

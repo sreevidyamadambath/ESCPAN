@@ -31,7 +31,7 @@
                 <td><input type="text" name="address" value="{{data['staffview'][0]['address']}}"></td>
                 <!-- <td><input type="text" name="branch" value="{{data['staffview'][0]['branch']}}"></td>
                 <td><input type="text" name="division" value="{{data['staffview'][0]['division']}}"></td> -->
-                <td>
+                <!-- <td>
                     <select name="br" id="">
                         <option value="">select</option>
                         {% for i in data['brview']%}
@@ -46,7 +46,43 @@
                         <option value="{{i['d_id']}}">{{i['division_name']}}</option>
                         {% endfor %}
                     </select>
+                </td> -->
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function updateDivisions() {
+        var branchId = $('#branchSelect').val();
+        $.ajax({
+            url: '/getDivisions',
+            type: 'GET',
+            data: { branch_id: branchId },
+            success: function (data) {
+                $('#divisionSelect').empty().append('<option value="">Select Division</option>');
+                $.each(data, function (index, division) {
+                    $('#divisionSelect').append('<option value="' + division['d_id'] + '">' + division['division_name'] + '</option>');
+                });
+            }
+        });
+    }
+</script>
+
+                
+                <td>
+                    <select name="br" id="branchSelect" onchange="updateDivisions()">
+                        <option value="">Select Branch</option>
+                        {% for branch in data['brview'] %}
+                        <option value="{{ branch['branch_id'] }}">{{ branch['branch_name'] }}</option>
+                        {% endfor %}
+                    </select>
                 </td>
+                <td>
+                    <select name="div" id="divisionSelect">
+                        <option value="">Select Division</option>
+                        {% for division in data['divview'] %}
+                        <option value="{{ division['d_id'] }}">{{ division['division_name'] }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                
                 <td><input type="text" name="pincode" value="{{data['staffview'][0]['pincode']}}"></td>
                 <td><input type="text" name="phone" value="{{data['staffview'][0]['phone']}}"></td>
                 <td><input type="text" name="email" value="{{data['staffview'][0]['email']}}"></td>

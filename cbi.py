@@ -4,8 +4,47 @@ cbi=Blueprint('cbi',__name__)
 
 @cbi.route('/admin')
 def cbi_home():
-    return render_template('admin_home.html')
+    return render_template('index.html')
 
+@cbi.route('/addbranch',methods=['post','get'])
+def addb():
+    data={}
+    if 'submit' in request.form:
+        branch=request.form['branch']
+        state=request.form['state']
+        district=request.form['district']
+        address=request.form['address']
+        pincode=request.form['pincode']
+        phone=request.form['phone']
+        email=request.form['email']
+        username=request.form['username']
+        password=request.form['password']
+
+        qry1="insert into login values(null,'%s','%s','branch')"%(username,password)
+        login_id=insert(qry1)
+
+        qry="insert into branch values(null,'%s','%s','%s','%s','%s','%s','%s','%s')"%(login_id,branch,state,district,address,pincode,phone,email)
+        insert(qry)
+        return '''<script>alert("Added");window.location="/managebranch"</script>'''
+    return render_template('addbranch.html')
+
+@cbi.route('/adddivision',methods=['post','get'])
+def addd():
+    data={}
+    qr1="select * from branch"
+    res=select(qr1)
+    data['brview']=res
+    if 'submit' in request.form:
+        branch=request.form['br']
+        division=request.form['division']
+        username=request.form['username']
+        password=request.form['password']
+        qry1="insert into login values(null,'%s','%s','division')"%(username,password)
+        login_id=insert(qry1)
+        qry="insert into division values(null,'%s','%s')"%(branch,division)
+        insert(qry)
+        return '''<script>alert("Added");window.location="/viewdivision"</script>'''
+    return render_template('adddivision.html',data=data)
 
 
 @cbi.route('/managebranch',methods=['post','get'])
@@ -25,22 +64,22 @@ def viewbranch():
         return ''' <script>alert("deleted successfully");window.location="/managebranch"</script>'''
 
     
-    if 'submit' in request.form:
-        branch=request.form['branch']
-        state=request.form['state']
-        district=request.form['district']
-        address=request.form['address']
-        pincode=request.form['pincode']
-        phone=request.form['phone']
-        email=request.form['email']
-        username=request.form['username']
-        password=request.form['password']
+    # if 'submit' in request.form:
+    #     branch=request.form['branch']
+    #     state=request.form['state']
+    #     district=request.form['district']
+    #     address=request.form['address']
+    #     pincode=request.form['pincode']
+    #     phone=request.form['phone']
+    #     email=request.form['email']
+    #     username=request.form['username']
+    #     password=request.form['password']
 
-        qry1="insert into login values(null,'%s','%s','branch')"%(username,password)
-        login_id=insert(qry1)
+    #     qry1="insert into login values(null,'%s','%s','branch')"%(username,password)
+    #     login_id=insert(qry1)
 
-        qry="insert into branch values(null,'%s','%s','%s','%s','%s','%s','%s','%s')"%(login_id,branch,state,district,address,pincode,phone,email)
-        insert(qry)
+    #     qry="insert into branch values(null,'%s','%s','%s','%s','%s','%s','%s','%s')"%(login_id,branch,state,district,address,pincode,phone,email)
+    #     insert(qry)
 
     return render_template('managebranch.html',data=data)
 
@@ -64,7 +103,7 @@ def updatebranch():
 
         return '''<script>alert("updated");window.location="/managebranch"</script>'''
     
-    return render_template('branch_home.html',data=data)   
+    return render_template('updatebranch.html',data=data)   
 
 @cbi.route('/viewdivision',methods=['POST','GET']) 
 def viewdivision():
@@ -86,10 +125,10 @@ def viewdivision():
         data['up']=select(qry6)
         if 'update' in request.form:
             division=request.form['division']
-                 
-            q="update division set division_name='%s' where d_id='%s'"%(division,id)
+            branch=request.form['br']  
+            q="update division set division_name='%s',branch_id='%s' where d_id='%s'"%(division,branch,id)
             update(q)
-            return '''<script>alert("update successfull");window.locatioin="/registration"</script>'''
+            return '''<script>alert("update successfull");window.locatioin="/viewdivision"</script>'''
 
     qr1="select * from branch"
     res=select(qr1)
@@ -173,13 +212,24 @@ def viewstaff():
     return render_template('viewstaff.html',data=data)
 
 
-@cbi.route('/viewcase') 
+@cbi.route('/viewcasecbi') 
 def viewcase():
     data={}
     qry="select * from cases inner join branch using(branch_id,branch_id)"
     res=select(qry)
     data['viewcase']=res
     return render_template('viewcase.html',data=data)
+
+from flask import jsonify
+
+@cbi.route('/getDivisions')
+def get_divisions():
+    branch_id = request.args.get('branch_id')
+    qry = "SELECT * FROM division WHERE branch_id = %s"
+    res = select(qry, (branch_id,))
+    return jsonify(res)
+
+
 
 @cbi.route('/viewcomplaints') 
 def viewcomplaints():

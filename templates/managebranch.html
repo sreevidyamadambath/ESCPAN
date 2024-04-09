@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,75 +7,7 @@
 </head>
 <body>
     <h1>Manage branches</h1>
-    <form  method="post">
-        <table border="2">
-            <tr>
-                <th>Branch name</th>
-                <td><input type="text" name="branch"></td>
-            </tr>
-            <tr>
-                <th>state</th>
-                <td><input type="text" name="state" id=""></td>
-
-            </tr>
-            <tr>
-                <th>district</th>
-                <td><input type="text" name="district" id=""></td>
-
-            </tr>
-            <tr>
-                <th>address</th>
-                <td><input type="text" name="address" id=""></td>
-
-            </tr>
-            <tr>
-                <th>pincode</th>
-                <td><input type="text" name="pincode" id=""></td>
-
-            </tr>
-            <tr>
-                <th>phone</th>
-                <td><input type="text" name="phone" id=""></td>
-
-            </tr>
-            <tr>
-                <th>email</th>
-                <td><input type="text" name="email" id=""></td>
-
-            </tr>
-            <tr>
-                <th>username</th>
-                <td><input type="text" name="username" id=""></td>
-
-            </tr>
-            <tr>
-                <th>password</th>
-                <td><input type="text" name="password" id=""></td>
-
-            </tr>
-            
-            <!-- <tr>
-                <td><input type="text" name="branch" id=""></td>
-                <td><input type="text" name="state" id=""></td>
-                <td><input type="text" name="district" id=""></td>
-                <td><input type="text" name="address" id=""></td>
-                <td><input type="text" name="pincode" id=""></td>
-                <td><input type="text" name="phone" id=""></td>
-                <td><input type="text" name="email" id=""></td>
-                <td><input type="text" name="username" id=""></td>
-                <td><input type="text" name="password" id=""></td>
-            </tr> -->
-            
-                <tr>
-                    <td><input type="submit" name="submit"  value="add"></td>
-                </tr>
-            
-        </table>
-    </form>
-        
-    
-    <br>
-
+    <h3 align="center"> <a href="/managebranch">Add Branch</a></h3>
     <table border="2">
     
         <tr>
@@ -104,7 +36,217 @@
         {% endfor %}
         
     </table>
-</form>
+  
     
+    
+        
+    
+    <br>
+
+    
+    
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100);
+
+body {
+  background-color: #3e94ec;
+  font-family: "Roboto", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  text-rendering: optimizeLegibility;
+}
+
+div.table-title {
+   display: block;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+}
+
+.table-title h3 {
+   color: #fafafa;
+   font-size: 30px;
+   font-weight: 400;
+   font-style:normal;
+   font-family: "Roboto", helvetica, arial, sans-serif;
+   text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+   text-transform:uppercase;
+}
+
+
+/*** Table Styles **/
+
+.table-fill {
+  background: white;
+  border-radius:3px;
+  border-collapse: collapse;
+  height: 320px;
+  margin: auto;
+  max-width: 600px;
+  padding:5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+}
+ 
+th {
+  color:#D5DDE5;;
+  background:#1b1e24;
+  border-bottom:4px solid #9ea7af;
+  border-right: 1px solid #343a45;
+  font-size:23px;
+  font-weight: 100;
+  padding:24px;
+  text-align:left;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  vertical-align:middle;
+}
+
+th:first-child {
+  border-top-left-radius:3px;
+}
+ 
+th:last-child {
+  border-top-right-radius:3px;
+  border-right:none;
+}
+  
+tr {
+  border-top: 1px solid #C1C3D1;
+  border-bottom-: 1px solid #C1C3D1;
+  color:#666B85;
+  font-size:16px;
+  font-weight:normal;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+ 
+tr:hover td {
+  background:#4E5066;
+  color:#FFFFFF;
+  border-top: 1px solid #22262e;
+}
+ 
+tr:first-child {
+  border-top:none;
+}
+
+tr:last-child {
+  border-bottom:none;
+}
+ 
+tr:nth-child(odd) td {
+  background:#EBEBEB;
+}
+ 
+tr:nth-child(odd):hover td {
+  background:#4E5066;
+}
+
+tr:last-child td:first-child {
+  border-bottom-left-radius:3px;
+}
+ 
+tr:last-child td:last-child {
+  border-bottom-right-radius:3px;
+}
+ 
+td {
+  background:#FFFFFF;
+  padding:20px;
+  text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:18px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #C1C3D1;
+}
+
+td:last-child {
+  border-right: 0px;
+}
+
+th.text-left {
+  text-align: left;
+}
+
+th.text-center {
+  text-align: center;
+}
+
+th.text-right {
+  text-align: right;
+}
+
+td.text-left {
+  text-align: left;
+}
+
+td.text-center {
+  text-align: center;
+}
+
+td.text-right {
+  text-align: right;
+}
+
+    </style>
+</head>
+<body>
+    <html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Table Style</title>
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; width=device-width;">
+</head>
+
+<body>
+<div class="table-title">
+<h3>Data Table</h3>
+<h3 align="center"> <a href="/addbranch">Add Branch</a></h3>
+</div>
+<table class="table-fill">
+<thead>
+<tr>
+<th class="text-left">Branch</th>
+<th class="text-left">State</th>
+<th class="text-left">Diatrict</th>
+<th class="text-left">Address</th>
+<th class="text-left">Pincode</th>
+<th class="text-left">Phone</th>
+<th class="text-left">Email</th>
+<th colspan="2" class="text-left">Edit</th>
+
+</tr>
+</thead>
+<tbody class="table-hover">
+    {% for i in data['viewbranch'] %}
+<tr>
+<td class="text-left">{{i['branch_name']}}</td>
+<td class="text-left">{{i['state']}}</td>
+<td class="text-left">{{i['district']}}</td>
+<td class="text-left">{{i['address']}}</td>
+<td class="text-left">{{i['pincode']}}</td>
+<td class="text-left">{{i['phone']}}</td>
+<td class="text-left">{{i['email']}}</td>
+<td><a href="/branch_home?id={{i['branch_id']}}">Update</a></td>
+<td><a href="?action=delete&id={{i['branch_id']}}">delete</a></td>
+</tr>
+{% endfor %}
+
+</tbody>
+</table>
+  
+
+  </body>
 </body>
 </html>

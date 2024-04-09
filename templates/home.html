@@ -1,12 +1,129 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="/login">Login</a><br>
-    
-</body>
-</html>
+{%include 'homeHeader.html'%}
+
+<!-- START ABOUT DESIGN AREA -->
+<section id="about" class="about-me-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title">
+                    <h2>ABOUT.</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <!-- START ABOUT TEXT AREA -->
+                <div class="about-text">
+                    <p>Efficient Case Management: Through functionalities such as case assignment, status updates, and
+                        complaint handling, the project streamlines case management processes, facilitating effective
+                        communication and resolution </p>
+                </div>
+                <!-- / END ABOUT TEXT AREA -->
+            </div>
+            <div class="col-md-6">
+                <!-- START ABOUT TEXT AREA -->
+                <div class="about-text">
+                    <p>Scalability and Future Readiness: The project's focus on optimization, documentation, and ML
+                        integration planning demonstrates a commitment to scalability and future enhancements, enabling
+                        the system to evolve and adapt to emerging needs and technologies.
+
+                    </p>
+                </div>
+                <!-- / END ABOUT TEXT AREA -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / END ABOUT DESIGN AREA -->
+
+
+<!-- START BLOG PAGE DESIGN AREA -->
+<section class="blog-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>recents blogs</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- START SINGLE BLOG DESIGN AREA -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-blog">
+                    <img src="/static/images/blog1.png" alt="">
+                    <a href="single-blog.html" class="blog-title"><strike>Crime</strike> Spot</a>
+                    <p>Within the tape, shadows whisper tales of the unseen, while every stray piece of evidence holds the weight of truth, waiting to be uncovered</p>
+                </div>
+            </div>
+            <!-- / END SINGLE BLOG DESIGN AREA -->
+            <!-- START SINGLE BLOG DESIGN AREA -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-blog">
+                    <img src="/static/images/blog2.png" alt="">
+                    <a href="single-blog.html" class="blog-title"><strike>Connections</strike></a>
+                    <p>Each crime leaves behind a mark on the map of human experience, a tangled web of stories and secrets waiting to be deciphered by those brave enough to navigate its treacherous paths</p>
+                </div>
+            </div>
+            <!-- / END SINGLE BLOG DESIGN AREA -->
+            <!-- START SINGLE BLOG DESIGN AREA -->
+            <div class="col-md-4 col-sm-6">
+                <div class="single-blog">
+                    <img src="/static/images/blog3.png" alt="">
+                    <a href="single-blog.html" class="blog-title"><strike>Evidence</strike></a>
+                    <p>Evidence speaks louder than words, weaving a silent narrative that only the keen eye of justice can unravel.</p>
+                </div>
+            </div>
+            <!-- / END SINGLE BLOG DESIGN AREA -->
+        </div>
+    </div>
+</section>
+<!-- / END BLOG PAGE DESIGN AREA -->
+
+
+
+
+<section id="contact" class="contact-me-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2>LOGIN</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row white-bg">
+            <div class="col-md-4">
+                <img style="background-color: rgba(13, 108, 109, 0.379);border-radius:50px"   src="/static/images/000.png" alt="Address Image" width="400" height="500">
+            </div>
+            <div class="col-md-8">
+                <div class="login-form">
+                    <form id="login-form" style="margin-top: 200px;" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <input type="text" name="username" class="form-control" id="username"
+                                    placeholder="Username" required="required">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="password" name="password" class="form-control"  id="password"
+                                    placeholder="Password" required="required">
+                            </div>
+                            <div class="col-md-12">
+                               <center> <div class="actions wow fadeInUp" data-wow-delay=".6s">
+                                <input type="submit" value="Login" name="submit" id="loginButton"
+                                class="btn btn-danger" title="Login">
+                            </div></center>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{%include 'footer.html'%}

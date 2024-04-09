@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: system-ui;
+            background: #f06d06;
+            color: white;
+            text-align: center;
+          }
+          .container{
+            max-width:800px;
+            margin: auto;
+          }
+           .book-list{
+             padding: 100px 0;
+           }
+           .book-list .book-title{
+             text-align: center;
+             font-size: 36px;
+             font-weight: 700;
+             margin-bottom: 30px;
+           }
+           .book-manage input::placeholder{
+             font-weight: 400;
+           }
+           .book-manage input{
+             display: block;
+             width: 100%;
+             height: 40px;
+             border-radius: 3px;
+             border: 1px solid rgb(175, 175, 175);
+             margin-bottom: 10px;
+             padding: 10px;
+             font-weight: 700;
+             outline:none;
+             font-size:18px;
+           }
+           .book-manage input[type="number"]::-webkit-inner-spin-button{
+            -webkit-appearance: none;
+           }
+           .book-manage input.empty {
+            border-color: red;
+            background: #ff000014;
+          }
+           .book-manage button{
+             display: block;
+             width: max-content;
+             margin: auto;
+             padding: 8px 20px;
+             border: none;
+             font-weight: 600;
+             background: #1d2172;
+             color: #fff;
+             border-radius: 4px;
+           }
+          .book-list table.table.table-hover {
+              margin-top: 50px;
+              width: 100%;
+              text-align: left;
+          }
+          .book-list table.table.table-hover tbody tr td button {
+            background: red;
+            border: none;
+            outline: none;
+            width: 30px;
+            height: 30px;
+            font-family: cursive;
+            border-radius: 50%;
+            transition: .3s;
+            color: #fff;
+          }
+          
+          .book-list table.table.table-hover tbody tr td button:active {
+            background: #000;
+          }
+          
+          
+          tr th {
+              font-size: 18px;
+          }
+    </style>
+</head>
+<body>
+    <div class="book-list">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="book-title">Add a book</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3"> 
+                    <div class="book-manage">
+                        {%if data['viewbranch']%}
+                        <form action="" method="post">
+                            <input type="text" name="branch" placeholder="Branch Name" value="{{data['viewbranch'][0]['branch_name']}}" id="ione">
+                            <input type="text" name="state" placeholder="Book State" value="{{data['viewbranch'][0]['state']}}" id="itwo">
+                            <input type="text" name="district" placeholder="Book District" value="{{data['viewbranch'][0]['district']}}" id="ithree">
+                            <input type="text" name="address" placeholder="Bough Address" value="{{data['viewbranch'][0]['address']}}" id="ifour">
+                            <input type="text" name="pincode" placeholder="Branch Pincode" value="{{data['viewbranch'][0]['pincode']}}" id="ione">
+                            <input type="text" name="phone" placeholder="Book Phone" value="{{data['viewbranch'][0]['phone']}}" id="itwo">
+                            <input type="text" name="email" placeholder="Book Email" value="{{data['viewbranch'][0]['email']}}" id="ithree">
+                            
+                            <input type="submit" name="upd" value="Update">
+                            
+                        </form> 
+                        {% endif %}
+                    </div> 
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
