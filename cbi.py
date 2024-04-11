@@ -1,34 +1,68 @@
 from flask import*
 from database import*
-cbi=Blueprint('cbi',__name__)
+head=Blueprint('head',__name__)
 
-@cbi.route('/admin')
-def cbi_home():
-    return render_template('index.html')
+@head.route('/head')
+def headoffice():
+    return render_template('headoffice.html')
 
-@cbi.route('/addbranch',methods=['post','get'])
-def addb():
+@head.route('/adminmanagebranch',methods=['post','get'])
+def adminmanagebranch():
     data={}
     if 'submit' in request.form:
-        branch=request.form['branch']
+        bname=request.form['bname']
         state=request.form['state']
-        district=request.form['district']
-        address=request.form['address']
-        pincode=request.form['pincode']
+        dis=request.form['dis']
+        add=request.form['add']
+        pin=request.form['pin']
         phone=request.form['phone']
         email=request.form['email']
-        username=request.form['username']
-        password=request.form['password']
+        uname=request.form['uname']
+        psd=request.form['psd']
 
-        qry1="insert into login values(null,'%s','%s','branch')"%(username,password)
+        qry1="insert into login values(null,'%s','%s','branch')"%(uname,psd)
         login_id=insert(qry1)
 
-        qry="insert into branch values(null,'%s','%s','%s','%s','%s','%s','%s','%s')"%(login_id,branch,state,district,address,pincode,phone,email)
+        qry="insert into branch values(null,'%s','%s','%s','%s','%s','%s','%s','%s')"%(login_id,bname,state,dis,add,pin,phone,email)
         insert(qry)
-        return '''<script>alert("Added");window.location="/managebranch"</script>'''
-    return render_template('addbranch.html')
+        return '''<script>alert("Managed:");window.location="/adminmanagebranch"</script>'''
+    if 'action' in request.args:
+        action=request.args['action']
+        id=request.args['id']
+        login_id=request.args['login']
+    else:
+        action=None
+    if action == "update":
+        sel="select * from branch where branch_id='%s'"%(id)
+        data['up']=select(sel)
+        
+    if 'up' in request.form:
+        bname=request.form['bname']
+        state=request.form['state']
+        dis=request.form['dis']
+        add=request.form['add']
+        pin=request.form['pin']
+        phone=request.form['phone']
+        email=request.form['email']
+        
+        up="update branch set branch_name='%s',\
+            state='%s',district='%s',address='%s',pincode='%s',phone='%s',email='%s' where branch_id='%s'"%(bname,state,dis,add,pin,phone,email,id)
+            
+        update(up)
+        return '''<script>alert("UPDATED :)");window.location="/adminmanagebranch"</script>'''
+    
+    if action == "delete":
+        dee="delete from login where login_id='%s'"%(login_id)
+        delete(dee)
+        dee1="delete from branch where branch_id='%s'"%(id)
+        delete(dee1)
+        
+        return '''<script>alert("DELETED :)");window.location="/adminmanagebranch"</script>'''
 
-@cbi.route('/adddivision',methods=['post','get'])
+    return render_template("head_manage_branch.html",data=data)
+    
+
+@head.route('/adddivision',methods=['post','get'])
 def addd():
     data={}
     qr1="select * from branch"
@@ -47,7 +81,7 @@ def addd():
     return render_template('adddivision.html',data=data)
 
 
-@cbi.route('/managebranch',methods=['post','get'])
+@head.route('/managebranch',methods=['post','get'])
 def viewbranch():
     data={}
     qry="select * from branch"
@@ -83,7 +117,7 @@ def viewbranch():
 
     return render_template('managebranch.html',data=data)
 
-@cbi.route('/branch_home',methods=['POST','GET'])
+@head.route('/branch_home',methods=['POST','GET'])
 def updatebranch():
     id=request.args['id']
     data={}
@@ -105,7 +139,7 @@ def updatebranch():
     
     return render_template('updatebranch.html',data=data)   
 
-@cbi.route('/viewdivision',methods=['POST','GET']) 
+@head.route('/viewdivision',methods=['POST','GET']) 
 def viewdivision():
     data={}
     qry="select * from division inner join branch using(branch_id,branch_id)"
@@ -149,7 +183,7 @@ def viewdivision():
 
         
 
-@cbi.route('/viewstaff',methods=['POST','GET']) 
+@head.route('/viewstaff',methods=['POST','GET']) 
 def viewstaff():
     data={}
     qry="select * from staff"
@@ -212,7 +246,7 @@ def viewstaff():
     return render_template('viewstaff.html',data=data)
 
 
-@cbi.route('/viewcasecbi') 
+@head.route('/viewcasehead') 
 def viewcase():
     data={}
     qry="select * from cases inner join branch using(branch_id,branch_id)"
@@ -222,7 +256,7 @@ def viewcase():
 
 from flask import jsonify
 
-@cbi.route('/getDivisions')
+@head.route('/getDivisions')
 def get_divisions():
     branch_id = request.args.get('branch_id')
     qry = "SELECT * FROM division WHERE branch_id = %s"
@@ -231,7 +265,7 @@ def get_divisions():
 
 
 
-@cbi.route('/viewcomplaints') 
+@head.route('/viewcomplaints') 
 def viewcomplaints():
     data={}
     qry="select * from complaints"
@@ -240,7 +274,7 @@ def viewcomplaints():
     print(res)
     return render_template('viewcomplaints.html',data=data)   
 
-@cbi.route('/sendreply',methods=['get','post'])
+@head.route('/sendreply',methods=['get','post'])
 def sendreply():
     id=request.args['id']
     data={}

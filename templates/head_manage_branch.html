@@ -1,0 +1,214 @@
+{%include 'headheader.html'%}
+
+{%if data['up']%}
+
+
+<div class="header-text">
+    <h2 style="color:rgba(34, 31, 70, 0.108)">Update<br>Branch</h2>
+</div>
+
+<center>
+
+    <form class="active" action="" method="post">
+        <table style="width: 50%;">
+            <tr>
+                <th>Branch Name </th>
+                <td><input type="text" value="{{data['up'][0]['branch_name']}}" name="bname" id=""></td>
+            </tr>
+            <tr>
+                <th>State </th>
+                <td><input type="text"  value="{{data['up'][0]['state']}}" name="state" id=""></td>
+            </tr>
+            <tr>
+                <th>District </th>
+                <td><input type="text"  value="{{data['up'][0]['district']}}" name="dis" id=""></td>
+            </tr>
+            <tr>
+                <th>Address </th>
+                <td><input type="text" name="add"  value="{{data['up'][0]['address']}}" id=""></td>
+            </tr>
+            <tr>
+                <th>Pincode </th>
+                <td><input type="text" name="pin"  value="{{data['up'][0]['pincode']}}" id=""></td>
+            </tr>
+            <tr>
+                <th>phone </th>
+                <td><input type="number" name="phone"  value="{{data['up'][0]['phone']}}" id=""></td>
+            </tr>
+            <tr>
+                <th>Email </th>
+                <td><input type="email" name="email"  value="{{data['up'][0]['email']}}" id=""></td>
+            </tr>
+          
+            <tr>
+                <td><input class="btn btn-danger" type="submit" name="up" value="update" id=""></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+</center>
+
+{%else%}
+
+<div class="header-text">
+    <h2 style="color:rgba(34, 31, 70, 0.108)">Manage<br>Branch</h2>
+</div>
+
+<center>
+
+    <form class="active" action="" method="post">
+        <table style="width: 50%;">
+            <tr>
+                <th>Branch Name </th>
+                <td><input type="text" name="bname" id=""></td>
+            </tr>
+            <tr>
+                <th>State </th>
+                <td><input type="text" name="state" id=""></td>
+            </tr>
+            <tr>
+                <th>District </th>
+                <td><input type="text" name="dis" id=""></td>
+            </tr>
+            <tr>
+                <th>Address </th>
+                <td><input type="text" name="add" id=""></td>
+            </tr>
+            <tr>
+                <th>Pincode </th>
+                <td><input type="text" name="pin" id=""></td>
+            </tr>
+            <tr>
+                <th>phone </th>
+                <td><input type="number" name="phone" id=""></td>
+            </tr>
+            <tr>
+                <th>Email </th>
+                <td><input type="email" name="email" id=""></td>
+            </tr>
+            <tr>
+                <th>Username </th>
+                <td><input type="text" name="uname" id=""></td>
+            </tr>
+            <tr>
+                <th>Password </th>
+                <td><input type="text" name="psd" id=""></td>
+            </tr>
+            <tr>
+                <td><input class="btn btn-danger" type="submit" name="submit" value="Manage" id=""></td>
+            </tr>
+        </table>
+    </form>
+
+
+
+</center>
+
+
+
+<div class="header-text">
+    <h2 style="color:rgba(34, 31, 70, 0.108)">View<br>BRANCH</h2>
+</div>
+<center>
+    <table style="width: 50%;">
+        <tr>
+            <th>Branch Name</th>
+            <th>State</th>
+            <th>District</th>
+            <th>Address</th>
+            <th>Pincode</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th></th>
+            <th></th>
+
+
+        </tr>
+        {%for i in data['view']%}
+        <tr>
+            <td>{{i['branch_name']}}</td>
+            <td>{{i['state']}}</td>
+            <td>{{i['district']}}</td>
+            <td>{{i['address']}}</td>
+            <td>{{i['pincode']}}</td>
+            <td>{{i['phone']}}</td>
+            <td>{{i['email']}}</td>
+            <td><a class="btn btn-warning" href="?action=update&id={{i['branch_id']}}&login={{i['login_id']}}">Update</a>
+            </td>
+            <td>
+                <a class="btn btn-danger" href="#" onclick="confirmDelete('{{i['branch_id']}}', '{{i['login_id']}}')">Delete</a>
+            </td>
+            <td><a href="/adminviewcases?bid={{i['branch_id']}}">View Cases</a></td>
+                    </tr>
+        {%endfor%}
+    </table>
+</center>
+
+{%endif%}
+<style>
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: #ffffff;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    th,
+    td {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    th {
+        background-color: rgb(46, 32, 12);
+        color: #ffffff;
+    }
+
+    tr:hover {
+        background-color: rgba(34, 31, 70, 0.108);
+    }
+
+    a {
+        text-decoration: none;
+        color: #3498db;
+        transition: color 0.3s;
+        font-weight: bold;
+    }
+
+    a:hover {
+        color: #2980b9;
+    }
+
+    /* Responsive styles */
+    @media only screen and (max-width: 600px) {
+        table {
+            width: 100%;
+        }
+
+        th,
+        td {
+            display: block;
+            width: 100%;
+        }
+    }
+</style>
+
+<br><br><br>
+
+<script>
+    function confirmDelete(branchId, loginId) {
+        if (confirm("Are you sure you want to delete?")) {
+            window.location.href = `?action=delete&id=${branchId}&login=${loginId}`;
+        } else {
+            // If canceled, do nothing
+        }
+    }
+</script>
+
+{%include 'footer.html'%}
